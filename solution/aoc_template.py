@@ -1,7 +1,6 @@
 # aoc_template.py
 
 import pathlib
-import sys
 
 
 def parse(puzzle_input):
@@ -24,9 +23,13 @@ def solve(puzzle_input):
     return solution1, solution2
 
 
+def main():
+    file_name = ""
+    path = f"{pathlib.Path(__file__).parent.parent}/resources/{file_name}"
+    puzzle_input = pathlib.Path(path).read_text().strip()
+    solutions = solve(puzzle_input)
+    print("\n".join(str(solution) for solution in solutions))
+
+
 if __name__ == "__main__":
-    for path in sys.argv[1:]:
-        print(f"{path}:")
-        puzzle_input = pathlib.Path(path).read_text().strip()
-        solutions = solve(puzzle_input)
-        print("\n".join(str(solution) for solution in solutions))
+    main()

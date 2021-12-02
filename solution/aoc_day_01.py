@@ -1,7 +1,6 @@
 # aoc_day_01.py
 
 import pathlib
-import sys
 
 
 def parse(puzzle_input):

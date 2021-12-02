@@ -4,7 +4,7 @@ import pathlib
 import pytest
 import solution.aoc_template as aoc
 
-PUZZLE_DIR = pathlib.Path(__file__).parent
+PUZZLE_DIR = pathlib.Path(__file__).parent.parent
 
 
 @pytest.fixture
