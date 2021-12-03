@@ -2,7 +2,7 @@
 
 import pathlib
 import pytest
-import solution.aoc_template as aoc
+import solution.aoc_base as aoc
 
 PUZZLE_DIR = pathlib.Path(__file__).parent.parent
 
