@@ -1,6 +1,6 @@
 # aoc_day_03.py
-import copy
 
+import copy
 from solution.aoc_base import AocBaseClass
 
 

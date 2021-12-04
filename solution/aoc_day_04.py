@@ -1,6 +1,6 @@
 # aoc_day_04.py
-import copy
 
+import copy
 from solution.aoc_base import AocBaseClass
 
 
@@ -57,34 +57,37 @@ class AocSolution(AocBaseClass):
                 return True
         return False
 
-    def _reset_board_list(self):
+    def _find_winning_boards(self):
         self.boards_list = copy.deepcopy(self.initial_board_list)
-
-    def part1(self):
-        """Solve part 1"""
-        self._reset_board_list()
-        for drawn_number in self.drawn_numbers:
-            for index_, board in enumerate(self.boards_list):
-                self.boards_list[index_] = self.mark_number(board, drawn_number)
-                if self.is_complete_rows_cols(board):
-                    return self.calculate_score(board, drawn_number)
-
-    def part2(self):
-        """Solve part 2"""
-        self._reset_board_list()
+        first_board_score = 0
+        last_board_score = 0
         for drawn_number in self.drawn_numbers:
             finished_boards = list()
             for index_, board in enumerate(self.boards_list):
                 self.boards_list[index_] = self.mark_number(board, drawn_number)
                 if self.is_complete_rows_cols(board):
+                    if not first_board_score:
+                        first_board_score = self.calculate_score(
+                            self.boards_list[index_], drawn_number
+                        )
                     finished_boards.insert(0, index_)
                     continue
 
             for index_ in finished_boards:
                 if len(self.boards_list) == 1:
-                    return self.calculate_score(self.boards_list[0], drawn_number)
-                if self.boards_list[index_]:
-                    self.boards_list.pop(index_)
+                    last_board_score = self.calculate_score(
+                        self.boards_list[index_], drawn_number
+                    )
+                self.boards_list.pop(index_)
+        return first_board_score, last_board_score
+
+    def part1(self):
+        """Solve part 1"""
+        return self._find_winning_boards()[0]
+
+    def part2(self):
+        """Solve part 2"""
+        return self._find_winning_boards()[1]
 
 
 if __name__ == "__main__":
