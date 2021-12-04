@@ -1,4 +1,4 @@
-# aoc_day_02.py
+# aoc_day_03.py
 import copy
 
 from solution.aoc_base import AocBaseClass

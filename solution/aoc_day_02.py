@@ -1,7 +1,5 @@
 # aoc_day_02.py
 
-import pathlib
-
 
 from solution.aoc_base import AocBaseClass
 

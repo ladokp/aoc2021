@@ -6,8 +6,8 @@ import solution.aoc_day_03 as aoc
 
 PUZZLE_DIR = pathlib.Path(__file__).parent.parent
 
-aoc_day_solution = aoc.AocSolution("day_02.txt")
-aoc_day_solution_test = aoc.AocSolution("day_02_test.txt")
+aoc_day_solution = aoc.AocSolution("day_03.txt")
+aoc_day_solution_test = aoc.AocSolution("day_03_test.txt")
 
 
 @pytest.fixture
