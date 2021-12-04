@@ -5,16 +5,18 @@ from solution.aoc_base import AocBaseClass
 
 
 class AocSolution(AocBaseClass):
-    def parse(self, puzzle_input):
+    def _parse(self, puzzle_input):
         """Parse input"""
         return [list(line) for line in puzzle_input.split("\n")]
 
-    def part1(self, data):
+    def part1(self, data=None):
         """Solve part 1"""
-        tranposed_data = [list(i) for i in zip(*data)]
+        if data is None:
+            data = self.data
+        transposed_data = [list(i) for i in zip(*data)]
         gamma = list()
         epsilon = list()
-        for bit_list in tranposed_data:
+        for bit_list in transposed_data:
             ones = bit_list.count("1")
             zeros = bit_list.count("0")
             if ones >= zeros:
@@ -28,18 +30,18 @@ class AocSolution(AocBaseClass):
         epsilon_ = int("".join(epsilon), 2)
         return gamma_ * epsilon_, "".join(gamma), "".join(epsilon)
 
-    def part2(self, data):
+    def part2(self):
         """Solve part 2"""
-        _, gamma, epsilon = self.part1(data)
+        _, gamma, epsilon = self.part1()
 
-        oxygen_rating = copy.deepcopy(data)
+        oxygen_rating = copy.deepcopy(self.data)
         for index, _ in enumerate(gamma):
             bit = self.part1(oxygen_rating)[1][index]
             oxygen_rating = list(filter(lambda x: x[index] == bit, oxygen_rating))
             if len(oxygen_rating) == 1:
                 break
 
-        co2_rating = copy.deepcopy(data)
+        co2_rating = copy.deepcopy(self.data)
         for index, _ in enumerate(epsilon):
             bit = self.part1(co2_rating)[2][index]
             co2_rating = list(filter(lambda x: x[index] == bit, co2_rating))
@@ -52,4 +54,4 @@ class AocSolution(AocBaseClass):
 
 
 if __name__ == "__main__":
-    AocSolution("day_03.txt").run_aoc_solution()
+    AocSolution("day_03.txt")

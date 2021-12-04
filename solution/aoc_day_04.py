@@ -6,13 +6,13 @@ from solution.aoc_base import AocBaseClass
 
 class AocSolution(AocBaseClass):
     def __init__(self, file_name):
-        super().__init__(file_name)
         self.drawn_numbers = list()
         self.boards_list = list()
         self.initial_board_list = None
         self.winning_boards = list()
+        super().__init__(file_name)
 
-    def parse(self, puzzle_input):
+    def _parse(self, puzzle_input):
         """Parse input"""
         puzzle_input = puzzle_input.split("\n\n")
         self.drawn_numbers = [int(number) for number in puzzle_input.pop(0).split(",")]
@@ -57,17 +57,21 @@ class AocSolution(AocBaseClass):
                 return True
         return False
 
-    def part1(self, data):
+    def _reset_board_list(self):
+        self.boards_list = copy.deepcopy(self.initial_board_list)
+
+    def part1(self):
         """Solve part 1"""
+        self._reset_board_list()
         for drawn_number in self.drawn_numbers:
             for index_, board in enumerate(self.boards_list):
                 self.boards_list[index_] = self.mark_number(board, drawn_number)
                 if self.is_complete_rows_cols(board):
                     return self.calculate_score(board, drawn_number)
 
-    def part2(self, data):
+    def part2(self):
         """Solve part 2"""
-        self.boards_list = copy.deepcopy(self.initial_board_list)
+        self._reset_board_list()
         for drawn_number in self.drawn_numbers:
             finished_boards = list()
             for index_, board in enumerate(self.boards_list):
@@ -84,4 +88,4 @@ class AocSolution(AocBaseClass):
 
 
 if __name__ == "__main__":
-    AocSolution("day_04.txt").run_aoc_solution()
+    AocSolution("day_04.txt")

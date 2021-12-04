@@ -1,10 +1,7 @@
 # test_aoc_day_04.py
 
-import pathlib
 import pytest
 import solution.aoc_day_04 as aoc
-
-PUZZLE_DIR = pathlib.Path(__file__).parent.parent
 
 aoc_day_solution = aoc.AocSolution("day_04.txt")
 aoc_day_solution_test = aoc.AocSolution("day_04_test.txt")
@@ -12,14 +9,12 @@ aoc_day_solution_test = aoc.AocSolution("day_04_test.txt")
 
 @pytest.fixture
 def example1():
-    puzzle_input = (PUZZLE_DIR / "resources/day_04_test.txt").read_text().strip()
-    return aoc_day_solution_test.parse(puzzle_input)
+    return aoc_day_solution_test.drawn_numbers, aoc_day_solution_test.initial_board_list
 
 
 @pytest.fixture
 def exercise_data():
-    puzzle_input = (PUZZLE_DIR / "resources/day_04.txt").read_text().strip()
-    return aoc_day_solution.parse(puzzle_input)
+    return aoc_day_solution.drawn_numbers, aoc_day_solution.initial_board_list
 
 
 def test_parse_example1(example1):
@@ -80,19 +75,19 @@ def test_parse_example1(example1):
 
 def test_part1_example1(example1):
     """Test part 1 on example input"""
-    assert aoc_day_solution_test.part1(None) == 4512
+    assert aoc_day_solution_test.part1() == 4512
 
 
 def test_part2_example1(example1):
     """Test part 2 on example input"""
-    assert aoc_day_solution_test.part2(None) == 1924
+    assert aoc_day_solution_test.part2() == 1924
 
 
 def test_part1_exercise_data(exercise_data):
     """Test part 1 on exercise_data input"""
-    assert aoc_day_solution.part1(None) == 46920
+    assert aoc_day_solution.part1() == 46920
 
 
 def test_part2_exercise_data(exercise_data):
     """Test part 2 on exercise_data input"""
-    assert aoc_day_solution.part2(None) == 12635
+    assert aoc_day_solution.part2() == 12635

@@ -5,7 +5,7 @@ from solution.aoc_base import AocBaseClass
 
 
 class AocSolution(AocBaseClass):
-    def parse(self, puzzle_input):
+    def _parse(self, puzzle_input):
         """Parse input"""
         return_list = list()
         for line in puzzle_input.split("\n"):
@@ -14,12 +14,12 @@ class AocSolution(AocBaseClass):
 
         return return_list
 
-    def part1(self, data):
+    def part1(self):
         """Solve part 1"""
         horizontal_position = 0
         depth = 0
 
-        for command in data:
+        for command in self.data:
             if command[0] == "forward":
                 horizontal_position += command[1]
             elif command[0] == "down":
@@ -29,13 +29,13 @@ class AocSolution(AocBaseClass):
 
         return horizontal_position * depth
 
-    def part2(self, data):
+    def part2(self):
         """Solve part 2"""
         horizontal_position = 0
         depth = 0
         aim = 0
 
-        for command in data:
+        for command in self.data:
             if command[0] == "forward":
                 horizontal_position += command[1]
                 depth += aim * command[1]
@@ -48,4 +48,4 @@ class AocSolution(AocBaseClass):
 
 
 if __name__ == "__main__":
-    AocSolution("day_02.txt").run_aoc_solution()
+    AocSolution("day_02.txt")
