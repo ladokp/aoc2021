@@ -1,10 +1,4 @@
-Sample Module Repository
+Advent of Code 2021 Repository
 ========================
 
-This simple project is an example repo for Python projects.
-
-`Learn more <http://www.kennethreitz.org/essays/repository-structure-and-python>`_.
-
----------------
-
-If you want to learn more about ``setup.py`` files, check out `this repository <https://github.com/kennethreitz/setup.py>`_.
+This repo contains solutions of the puzzles written in Python found at <https://adventofcode.com/2021>.
