@@ -10,7 +10,6 @@ class AocBaseClass(ABC):
         puzzle_input = pathlib.Path(path).read_text().strip()
         self.data = self._parse(puzzle_input)
         self.solutions = self.__solve()
-        print("\n".join(str(solution) for solution in self.solutions))
 
     @abstractmethod
     def _parse(self, puzzle_input):
