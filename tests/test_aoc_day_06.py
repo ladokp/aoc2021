@@ -19,7 +19,7 @@ def exercise_data():
 
 def test_parse_example1(example1):
     """Test that input is parsed properly"""
-    assert example1 == [3, 4, 3, 1, 2]
+    assert example1 == {0: 0, 1: 1, 2: 1, 3: 2, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0}
 
 
 def test_part1_example1(example1):

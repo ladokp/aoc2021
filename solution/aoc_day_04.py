@@ -8,8 +8,6 @@ class AocSolution(AocBaseClass):
     def __init__(self, file_name):
         self.drawn_numbers = list()
         self.boards_list = list()
-        self.initial_board_list = None
-        self.winning_boards = list()
         super().__init__(file_name)
 
     def _parse(self, puzzle_input):
@@ -25,8 +23,6 @@ class AocSolution(AocBaseClass):
                 ]
                 current_board.append(line)
             self.boards_list.append(current_board)
-        self.initial_board_list = copy.deepcopy(self.boards_list)
-        return self.drawn_numbers, self.boards_list
 
     @staticmethod
     def mark_number(board, drawn_number):
@@ -58,27 +54,27 @@ class AocSolution(AocBaseClass):
         return False
 
     def _find_winning_boards(self):
-        self.boards_list = copy.deepcopy(self.initial_board_list)
+        boards_list = copy.deepcopy(self.boards_list)
         first_board_score = 0
         last_board_score = 0
         for drawn_number in self.drawn_numbers:
             finished_boards = list()
-            for index_, board in enumerate(self.boards_list):
-                self.boards_list[index_] = self.mark_number(board, drawn_number)
+            for index_, board in enumerate(boards_list):
+                boards_list[index_] = self.mark_number(board, drawn_number)
                 if self.is_complete_rows_cols(board):
                     if not first_board_score:
                         first_board_score = self.calculate_score(
-                            self.boards_list[index_], drawn_number
+                            boards_list[index_], drawn_number
                         )
                     finished_boards.insert(0, index_)
                     continue
 
             for index_ in finished_boards:
-                if len(self.boards_list) == 1:
+                if len(boards_list) == 1:
                     last_board_score = self.calculate_score(
-                        self.boards_list[index_], drawn_number
+                        boards_list[index_], drawn_number
                     )
-                self.boards_list.pop(index_)
+                boards_list.pop(index_)
         return first_board_score, last_board_score
 
     def part1(self):

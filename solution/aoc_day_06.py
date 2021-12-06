@@ -11,22 +11,21 @@ class AocSolution(AocBaseClass):
 
     def _parse(self, puzzle_input):
         """Parse input"""
-        self.initial_data = [int(number) for number in puzzle_input.split(",")]
-        return self.initial_data
+        initial_data = [int(number) for number in puzzle_input.split(",")]
+        return {
+            0: initial_data.count(0),
+            1: initial_data.count(1),
+            2: initial_data.count(2),
+            3: initial_data.count(3),
+            4: initial_data.count(4),
+            5: initial_data.count(5),
+            6: initial_data.count(6),
+            7: initial_data.count(7),
+            8: initial_data.count(8),
+        }
 
     def _simulate_population(self, days=80):
-        self.data = copy.deepcopy(self.initial_data)
-        population = {
-            0: self.data.count(0),
-            1: self.data.count(1),
-            2: self.data.count(2),
-            3: self.data.count(3),
-            4: self.data.count(4),
-            5: self.data.count(5),
-            6: self.data.count(6),
-            7: self.data.count(7),
-            8: self.data.count(8),
-        }
+        population = copy.deepcopy(self.data)
         for day_counter in range(0, days):
             population = {
                 0: population[1],

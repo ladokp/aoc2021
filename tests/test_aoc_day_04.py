@@ -9,12 +9,12 @@ aoc_day_solution_test = aoc.AocSolution("day_04_test.txt")
 
 @pytest.fixture
 def example1():
-    return aoc_day_solution_test.drawn_numbers, aoc_day_solution_test.initial_board_list
+    return aoc_day_solution_test.drawn_numbers, aoc_day_solution_test.boards_list
 
 
 @pytest.fixture
 def exercise_data():
-    return aoc_day_solution.drawn_numbers, aoc_day_solution.initial_board_list
+    return aoc_day_solution.drawn_numbers, aoc_day_solution.boards_list
 
 
 def test_parse_example1(example1):

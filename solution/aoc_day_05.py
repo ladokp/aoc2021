@@ -5,10 +5,6 @@ from solution.aoc_base import AocBaseClass
 
 
 class AocSolution(AocBaseClass):
-    def __init__(self, file_name):
-        self.count_diagonals = False
-        super().__init__(file_name)
-
     def _parse(self, puzzle_input):
         """Parse input"""
         return_list = list()
