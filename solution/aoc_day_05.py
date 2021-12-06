@@ -84,5 +84,5 @@ class AocSolution(AocBaseClass):
 
 
 if __name__ == "__main__":
-    exercise_solution = AocSolution("day_05_test.txt")
+    exercise_solution = AocSolution("day_05.txt")
     print("\n".join(str(solution) for solution in exercise_solution.solutions))
