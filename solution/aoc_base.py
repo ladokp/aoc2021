@@ -9,7 +9,7 @@ class AocBaseClass(ABC):
         path = f"{pathlib.Path(__file__).parent.parent}/resources/{file_name}"
         puzzle_input = pathlib.Path(path).read_text().strip()
         self.data = self._parse(puzzle_input)
-        self.solutions = self.__solve()
+        self.solutions = None
 
     @abstractmethod
     def _parse(self, puzzle_input):
@@ -26,6 +26,6 @@ class AocBaseClass(ABC):
         """Solve part 2"""
         pass
 
-    def __solve(self):
+    def solve(self):
         """Solve the puzzle for the given input"""
-        return self.part1(), self.part2()
+        self.solutions = self.part1(), self.part2()

@@ -1,14 +1,10 @@
 # aoc_day_06.py
-import copy
 
+import copy
 from solution.aoc_base import AocBaseClass
 
 
 class AocSolution(AocBaseClass):
-    def __init__(self, file_name):
-        self.initial_data = None
-        super().__init__(file_name)
-
     def _parse(self, puzzle_input):
         """Parse input"""
         initial_data = [int(number) for number in puzzle_input.split(",")]
@@ -51,4 +47,5 @@ class AocSolution(AocBaseClass):
 
 if __name__ == "__main__":
     exercise_solution = AocSolution("day_06.txt")
+    exercise_solution.solve()
     print("\n".join(str(solution) for solution in exercise_solution.solutions))
