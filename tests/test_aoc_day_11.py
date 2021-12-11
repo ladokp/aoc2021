@@ -3,23 +3,20 @@
 import pytest
 import solution.aoc_day_11 as aoc
 
-aoc_day_solution = aoc.AocSolution()
-aoc_day_solution_test = aoc.AocSolution(test_suffix="_test")
+
+@pytest.fixture
+def test_solution():
+    return aoc.AocSolution(test_suffix="_test")
 
 
 @pytest.fixture
-def example1():
-    return aoc_day_solution_test.data
+def exercise_solution():
+    return aoc.AocSolution()
 
 
-@pytest.fixture
-def exercise_data():
-    return aoc_day_solution.data
-
-
-def test_parse_example1(example1):
+def test_parse_test_solution(test_solution):
     """Test that input is parsed properly"""
-    assert example1 == [
+    assert test_solution.data == [
         [5, 4, 8, 3, 1, 4, 3, 2, 2, 3],
         [2, 7, 4, 5, 8, 5, 4, 7, 1, 1],
         [5, 2, 6, 4, 5, 5, 6, 1, 7, 3],
@@ -33,21 +30,21 @@ def test_parse_example1(example1):
     ]
 
 
-def test_part1_example1(example1):
+def test_part1_test_solution(test_solution):
     """Test part 1 on example input"""
-    assert aoc_day_solution_test.part1() == 1656
+    assert test_solution.part1() == 1656
 
 
-def test_part2_example1(example1):
+def test_part2_test_solution(test_solution):
     """Test part 2 on example input"""
-    assert aoc_day_solution_test.part2() == 195
+    assert test_solution.part2() == 195
 
 
-def test_part1_exercise_data(exercise_data):
-    """Test part 1 on exercise_data input"""
-    assert aoc_day_solution.part1() == 1642
+def test_part1_exercise_solution(exercise_solution):
+    """Test part 1 on exercise_solution input"""
+    assert exercise_solution.part1() == 1642
 
 
-def test_part2_exercise_data(exercise_data):
-    """Test part 2 on exercise_data input"""
-    assert aoc_day_solution.part2() == 320
+def test_part2_exercise_solution(exercise_solution):
+    """Test part 2 on exercise_solution input"""
+    assert exercise_solution.part2() == 320

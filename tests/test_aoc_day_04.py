@@ -3,23 +3,20 @@
 import pytest
 import solution.aoc_day_04 as aoc
 
-aoc_day_solution = aoc.AocSolution()
-aoc_day_solution_test = aoc.AocSolution(test_suffix="_test")
+
+@pytest.fixture
+def test_solution():
+    return aoc.AocSolution(test_suffix="_test")
 
 
 @pytest.fixture
-def example1():
-    return aoc_day_solution_test.drawn_numbers, aoc_day_solution_test.boards_list
+def exercise_solution():
+    return aoc.AocSolution()
 
 
-@pytest.fixture
-def exercise_data():
-    return aoc_day_solution.drawn_numbers, aoc_day_solution.boards_list
-
-
-def test_parse_example1(example1):
+def test_parse_test_solution(test_solution):
     """Test that input is parsed properly"""
-    assert example1[0] == [
+    assert test_solution.drawn_numbers == [
         7,
         4,
         9,
@@ -48,7 +45,7 @@ def test_parse_example1(example1):
         26,
         1,
     ]
-    assert example1[1] == [
+    assert test_solution.boards_list == [
         [
             [22, 13, 17, 11, 0],
             [8, 2, 23, 4, 24],
@@ -73,21 +70,21 @@ def test_parse_example1(example1):
     ]
 
 
-def test_part1_example1(example1):
+def test_part1_test_solution(test_solution):
     """Test part 1 on example input"""
-    assert aoc_day_solution_test.part1() == 4512
+    assert test_solution.part1() == 4512
 
 
-def test_part2_example1(example1):
+def test_part2_test_solution(test_solution):
     """Test part 2 on example input"""
-    assert aoc_day_solution_test.part2() == 1924
+    assert test_solution.part2() == 1924
 
 
-def test_part1_exercise_data(exercise_data):
-    """Test part 1 on exercise_data input"""
-    assert aoc_day_solution.part1() == 46920
+def test_part1_exercise_solution(exercise_solution):
+    """Test part 1 on exercise_solution input"""
+    assert exercise_solution.part1() == 46920
 
 
-def test_part2_exercise_data(exercise_data):
-    """Test part 2 on exercise_data input"""
-    assert aoc_day_solution.part2() == 12635
+def test_part2_exercise_solution(exercise_solution):
+    """Test part 2 on exercise_solution input"""
+    assert exercise_solution.part2() == 12635

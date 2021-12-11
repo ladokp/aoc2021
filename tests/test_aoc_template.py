@@ -1,37 +1,27 @@
 # test_aoc_template.py
 
-import pathlib
 import pytest
 import solution.aoc_base as aoc
 
-PUZZLE_DIR = pathlib.Path(__file__).parent.parent
-
 
 @pytest.fixture
-def example1():
-    puzzle_input = (PUZZLE_DIR / "example1.txt").read_text().strip()
-    return aoc.parse(puzzle_input)
-
-
-@pytest.fixture
-def example2():
-    puzzle_input = (PUZZLE_DIR / "example2.txt").read_text().strip()
-    return aoc.parse(puzzle_input)
+def test_solution():
+    return aoc.AocSolution(test_suffix="_test")
 
 
 @pytest.mark.skip(reason="Not implemented")
-def test_parse_example1(example1):
+def test_parse_test_solution(test_solution):
     """Test that input is parsed properly"""
-    assert example1 == ...
+    assert test_solution.data == ...
 
 
 @pytest.mark.skip(reason="Not implemented")
-def test_part1_example1(example1):
+def test_part1_test_solution(test_solution):
     """Test part 1 on example input"""
-    assert aoc.part1(example1) == ...
+    assert test_solution.part1() == ...
 
 
 @pytest.mark.skip(reason="Not implemented")
-def test_part2_example2(example2):
+def test_part2_test_solution(test_solution):
     """Test part 2 on example input"""
-    assert aoc.part2(example2) == ...
+    assert test_solution.part2() == ...

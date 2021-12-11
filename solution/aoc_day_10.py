@@ -43,7 +43,9 @@ class AocSolution(AocBaseClass):
                 try:
                     pos = check_sub_chunk(pos + 1)
                 except IncompleteException as e:
-                    raise IncompleteException(e.error_code * 5 + self.incomplete_brackets[start])
+                    raise IncompleteException(
+                        e.error_code * 5 + self.incomplete_brackets[start]
+                    )
 
                 end = line[pos]
                 if end != self.bracket[start]:
