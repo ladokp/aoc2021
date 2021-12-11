@@ -16,6 +16,10 @@ class AocSolution(AocBaseClass):
 
         return return_list
 
+    @classmethod
+    def get_day(cls):
+        return 9
+
     def is_low_point(self, x, y):
         underground_map_matrix = self.data
         current_point = underground_map_matrix[y][x]
@@ -87,6 +91,6 @@ class AocSolution(AocBaseClass):
 
 
 if __name__ == "__main__":
-    exercise_solution = AocSolution("day_09.txt")
+    exercise_solution = AocSolution()
     exercise_solution.solve()
     print("\n".join(str(solution) for solution in exercise_solution.solutions))

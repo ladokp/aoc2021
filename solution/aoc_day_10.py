@@ -16,11 +16,15 @@ class IncompleteException(Exception):
 
 
 class AocSolution(AocBaseClass):
-    def __init__(self, file_name):
-        super().__init__(file_name)
+    def __init__(self, /, test_suffix=""):
+        super().__init__(test_suffix=test_suffix)
         self.bracket = {"{": "}", "(": ")", "[": "]", "<": ">"}
         self.corrupt_brackets = {")": 3, "]": 57, "}": 1197, ">": 25137}
         self.incomplete_brackets = {"(": 1, "[": 2, "{": 3, "<": 4}
+
+    @classmethod
+    def get_day(cls):
+        return 10
 
     def _parse(self, puzzle_input):
         """Parse input"""
@@ -69,6 +73,6 @@ class AocSolution(AocBaseClass):
 
 
 if __name__ == "__main__":
-    exercise_solution = AocSolution("day_10.txt")
+    exercise_solution = AocSolution()
     exercise_solution.solve()
     print("\n".join(str(solution) for solution in exercise_solution.solutions))

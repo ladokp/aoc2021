@@ -5,11 +5,17 @@ from abc import ABC, abstractmethod
 
 
 class AocBaseClass(ABC):
-    def __init__(self, file_name):
-        path = f"{pathlib.Path(__file__).parent.parent}/resources/{file_name}"
+    def __init__(self, /, test_suffix=""):
+        path = f"{pathlib.Path(__file__).parent.parent}/resources/day_{self.__class__.get_day():02}{test_suffix}.txt"
         puzzle_input = pathlib.Path(path).read_text().strip()
         self.data = self._parse(puzzle_input)
         self.solutions = None
+
+    @classmethod
+    @abstractmethod
+    def get_day(cls):
+        """Parse input"""
+        return cls.day
 
     @abstractmethod
     def _parse(self, puzzle_input):

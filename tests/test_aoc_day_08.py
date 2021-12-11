@@ -3,8 +3,8 @@
 import pytest
 import solution.aoc_day_08 as aoc
 
-aoc_day_solution = aoc.AocSolution("day_08.txt")
-aoc_day_solution_test = aoc.AocSolution("day_08_test.txt")
+aoc_day_solution = aoc.AocSolution()
+aoc_day_solution_test = aoc.AocSolution(test_suffix="_test")
 
 
 @pytest.fixture

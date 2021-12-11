@@ -20,6 +20,10 @@ class AocSolution(AocBaseClass):
             8: initial_data.count(8),
         }
 
+    @classmethod
+    def get_day(cls):
+        return 6
+
     def _simulate_population(self, days=80):
         population = copy.deepcopy(self.data)
         for day_counter in range(0, days):
@@ -46,6 +50,6 @@ class AocSolution(AocBaseClass):
 
 
 if __name__ == "__main__":
-    exercise_solution = AocSolution("day_06.txt")
+    exercise_solution = AocSolution()
     exercise_solution.solve()
     print("\n".join(str(solution) for solution in exercise_solution.solutions))

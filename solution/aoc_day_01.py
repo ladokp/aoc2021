@@ -8,6 +8,10 @@ class AocSolution(AocBaseClass):
         """Parse input"""
         return [int(line) for line in puzzle_input.split("\n")]
 
+    @classmethod
+    def get_day(cls):
+        return 1
+
     def part1(self, group_size=1):
         """Solve part 1"""
         increasing_measurements = 0
@@ -28,6 +32,6 @@ class AocSolution(AocBaseClass):
 
 
 if __name__ == "__main__":
-    exercise_solution = AocSolution("day_01.txt")
+    exercise_solution = AocSolution()
     exercise_solution.solve()
     print("\n".join(str(solution) for solution in exercise_solution.solutions))
