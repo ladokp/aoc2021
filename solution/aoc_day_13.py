@@ -7,9 +7,6 @@ class AocSolution(AocBaseClass):
     def __init__(self, /, test_suffix=""):
         self.coordinates = list()
         self.instructions = list()
-        self.max_x = 0
-        self.max_y = 0
-        self.map = list()
         super().__init__(test_suffix=test_suffix)
 
     @classmethod
@@ -23,64 +20,49 @@ class AocSolution(AocBaseClass):
         for index, coordinate in enumerate(self.coordinates.split("\n")):
             x, y = coordinate.split(",")
             tmp_coordinate_list.append((int(x), int(y)))
-        tmp_coordinate_list.sort(key=lambda x_: x_[0], reverse=True)
-        self.max_x = tmp_coordinate_list[0][0]
-        tmp_coordinate_list.sort(key=lambda x_: x_[1], reverse=True)
-        self.max_y = tmp_coordinate_list[0][1]
         self.coordinates = tmp_coordinate_list
+
         tmp_instructions_list = list()
         for index, instruction in enumerate(self.instructions.split("\n")):
             direction, axis = instruction.split("=")
             tmp_instructions_list.append((direction[-1], int(axis)))
         self.instructions = tmp_instructions_list
 
-        for y in range(0, self.max_y + 1):
-            tmp_list = list()
-            for x in range(0, self.max_x + 1):
-                if (x, y) in self.coordinates:
-                    tmp_list.append("#")
-                else:
-                    tmp_list.append(" ")
-            self.map.append(tmp_list)
-
     def fold_map(self, instruction):
-        new_map = list()
-        dots_count = 0
-        if instruction[0] == "y":
-            for y in range(0, instruction[1]):
-                tmp_list = list()
-                for x in range(0, self.max_x + 1):
-                    if self.map[self.max_y - y][x] == "#" or self.map[y][x] == "#":
-                        tmp_list.append("#")
-                        dots_count += 1
-                    else:
-                        tmp_list.append(" ")
-                new_map.append(tmp_list)
-            self.max_y = instruction[1] - 1
-            self.map = new_map
-        else:
-            for y in range(0, self.max_y + 1):
-                tmp_list = list()
-                for x in range(0, instruction[1]):
-                    if self.map[y][self.max_x - x] == "#" or self.map[y][x] == "#":
-                        tmp_list.append("#")
-                        dots_count += 1
-                    else:
-                        tmp_list.append(" ")
-                new_map.append(tmp_list)
-            self.max_x = instruction[1] - 1
-            self.map = new_map
-        return dots_count
+        direction, fold_index = instruction
+        new_coordinates = list()
+        for coordinate in self.coordinates:
+            if (direction == "y" and coordinate[1] < fold_index) or (
+                direction == "x" and coordinate[0] < fold_index
+            ):
+                new_coordinates.append(coordinate)
+            elif direction == "y":
+                new_y = fold_index - (coordinate[1] - fold_index)
+                new_coordinates.append((coordinate[0], new_y))
+            else:
+                new_x = fold_index - (coordinate[0] - fold_index)
+                new_coordinates.append((new_x, coordinate[1]))
+        self.coordinates = set(new_coordinates)
+        return len(set(self.coordinates))
 
     def print_map(self):
+        x_list = [c[0] for c in self.coordinates]
+        max_x = max(x_list)
+        y_list = [c[1] for c in self.coordinates]
+        max_y = max(y_list)
         string_map = ""
-        for line in self.map:
-            string_map = string_map + "".join(line) + "\n"
+        for y in range(0, max_y + 1):
+            for x in range(0, max_x + 1):
+                if (x, y) in self.coordinates:
+                    string_map += "#"
+                else:
+                    string_map += " "
+            string_map += "\n"
         return string_map
 
     def part1(self):
         """Solve part 1"""
-        return self.fold_map(self.instructions.pop(0))
+        return self.fold_map(self.instructions[0])
 
     def part2(self):
         """Solve part 2"""
@@ -90,6 +72,6 @@ class AocSolution(AocBaseClass):
 
 
 if __name__ == "__main__":
-    exercise_solution = AocSolution(test_suffix="")
+    exercise_solution = AocSolution()
     exercise_solution.solve()
     print("\n".join(str(solution) for solution in exercise_solution.solutions))
