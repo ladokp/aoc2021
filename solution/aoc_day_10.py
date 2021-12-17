@@ -22,9 +22,7 @@ class AocSolution(AocBaseClass):
         self.corrupt_brackets = {")": 3, "]": 57, "}": 1197, ">": 25137}
         self.incomplete_brackets = {"(": 1, "[": 2, "{": 3, "<": 4}
 
-    @classmethod
-    def get_day(cls):
-        return 10
+    DAY = 10
 
     def _parse(self, puzzle_input):
         """Parse input"""
@@ -75,6 +73,4 @@ class AocSolution(AocBaseClass):
 
 
 if __name__ == "__main__":
-    exercise_solution = AocSolution()
-    exercise_solution.solve()
-    print("\n".join(str(solution) for solution in exercise_solution.solutions))
+    AocSolution().print_solution()

@@ -10,9 +10,7 @@ class AocSolution(AocBaseClass):
         self.boards_list = list()
         super().__init__(test_suffix=test_suffix)
 
-    @classmethod
-    def get_day(cls):
-        return 4
+    DAY = 4
 
     def _parse(self, puzzle_input):
         """Parse input"""
@@ -91,6 +89,4 @@ class AocSolution(AocBaseClass):
 
 
 if __name__ == "__main__":
-    exercise_solution = AocSolution()
-    exercise_solution.solve()
-    print("\n".join(str(solution) for solution in exercise_solution.solutions))
+    AocSolution().print_solution()

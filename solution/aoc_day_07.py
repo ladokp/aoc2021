@@ -11,9 +11,7 @@ class AocSolution(AocBaseClass):
         return_list.sort()
         return return_list
 
-    @classmethod
-    def get_day(cls):
-        return 7
+    DAY = 7
 
     def calculate_cheapest_depth(self):
         def add_consumption(distance):
@@ -42,6 +40,4 @@ class AocSolution(AocBaseClass):
 
 
 if __name__ == "__main__":
-    exercise_solution = AocSolution()
-    exercise_solution.solve()
-    print("\n".join(str(solution) for solution in exercise_solution.solutions))
+    AocSolution().print_solution()

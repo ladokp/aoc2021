@@ -5,14 +5,12 @@ import re
 
 
 class AocSolution(AocBaseClass):
-    @classmethod
-    def get_day(cls):
-        return 17
-
     def _parse(self, puzzle_input):
         """Parse input"""
         target_area = map(int, re.findall(r"\d+", puzzle_input))
-        return (i * j for i, j in zip(target_area, [1, 1, -1, -1]))
+        return tuple(i * j for i, j in zip(target_area, [1, 1, -1, -1]))
+
+    DAY = 17
 
     def find_target_area(self, /, calculate_score=False):
         x_min, x_max, y_min, y_max = self.data
@@ -46,6 +44,4 @@ class AocSolution(AocBaseClass):
 
 
 if __name__ == "__main__":
-    exercise_solution = AocSolution()
-    exercise_solution.solve()
-    print("\n".join(str(solution) for solution in exercise_solution.solutions))
+    AocSolution().print_solution()

@@ -7,15 +7,13 @@ from solution.aoc_base import AocBaseClass
 
 
 class AocSolution(AocBaseClass):
-    @classmethod
-    def get_day(cls):
-        return 15
-
     def _parse(self, puzzle_input):
         """Parse input"""
         return np.array(
             [[int(x) for x in line.rstrip()] for line in puzzle_input.split("\n")]
         )
+
+    DAY = 15
 
     def neighbors(self, x, y):
         if x > 0:
@@ -57,6 +55,4 @@ class AocSolution(AocBaseClass):
 
 
 if __name__ == "__main__":
-    exercise_solution = AocSolution()
-    exercise_solution.solve()
-    print("\n".join(str(solution) for solution in exercise_solution.solutions))
+    AocSolution().print_solution()

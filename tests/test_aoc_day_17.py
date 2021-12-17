@@ -16,7 +16,7 @@ def exercise_solution():
 
 def test_parse_test_solution(test_solution):
     """Test that input is parsed properly"""
-    assert tuple(test_solution.data) == (20, 30, -10, -5)
+    assert test_solution.data == (20, 30, -10, -5)
 
 
 def test_part1_test_solution(test_solution):

@@ -13,9 +13,7 @@ class AocSolution(AocBaseClass):
 
         return return_list
 
-    @classmethod
-    def get_day(cls):
-        return 2
+    DAY = 2
 
     def _calculate_metrics(self):
         horizontal_position = 0
@@ -46,6 +44,4 @@ class AocSolution(AocBaseClass):
 
 
 if __name__ == "__main__":
-    exercise_solution = AocSolution(2)
-    exercise_solution.solve()
-    print("\n".join(str(solution) for solution in exercise_solution.solutions))
+    AocSolution().print_solution()

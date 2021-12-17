@@ -15,9 +15,7 @@ class AocSolution(AocBaseClass):
             outputs.append([output_ for output_ in output_str.split()])
         return inputs, outputs
 
-    @classmethod
-    def get_day(cls):
-        return 8
+    DAY = 8
 
     # Binary encoding of segments
     SEGMENT_BINARY_MASK = [
@@ -71,6 +69,4 @@ class AocSolution(AocBaseClass):
 
 
 if __name__ == "__main__":
-    exercise_solution = AocSolution()
-    exercise_solution.solve()
-    print("\n".join(str(solution) for solution in exercise_solution.solutions))
+    AocSolution().print_solution()

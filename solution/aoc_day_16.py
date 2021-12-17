@@ -28,13 +28,11 @@ class OperatorPacket:
 
 
 class AocSolution(AocBaseClass):
-    @classmethod
-    def get_day(cls):
-        return 16
-
     def _parse(self, puzzle_input):
         """Parse input"""
         return bin(int(puzzle_input, 16))[2:].zfill(len(puzzle_input) * 4)
+
+    DAY = 16
 
     def decode(self, bits):
         version = int(bits[:3], 2)
@@ -113,6 +111,4 @@ class AocSolution(AocBaseClass):
 
 
 if __name__ == "__main__":
-    exercise_solution = AocSolution()
-    exercise_solution.solve()
-    print("\n".join(str(solution) for solution in exercise_solution.solutions))
+    AocSolution().print_solution()

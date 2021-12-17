@@ -15,9 +15,7 @@ class AocSolution(AocBaseClass):
             return_list.append(line_list)
         return return_list
 
-    @classmethod
-    def get_day(cls):
-        return 11
+    DAY = 11
 
     @staticmethod
     def flash(x, y, octo):
@@ -79,6 +77,4 @@ class AocSolution(AocBaseClass):
 
 
 if __name__ == "__main__":
-    exercise_solution = AocSolution()
-    exercise_solution.solve()
-    print("\n".join(str(solution) for solution in exercise_solution.solutions))
+    AocSolution().print_solution()
