@@ -5,9 +5,6 @@ from solution.aoc_base import AocBaseClass
 
 
 class AocSolution(AocBaseClass):
-    def __init__(self, /, test_suffix=""):
-        super().__init__(test_suffix=test_suffix)
-
     def _parse(self, puzzle_input):
         """Parse input"""
         enhancement, image = puzzle_input.split("\n\n")
