@@ -1,22 +1,38 @@
 # aoc_base.py
 
 import pathlib
+import os
 from abc import ABC, abstractmethod
+from aocd import get_data
 from pprint import pprint
 
 
 class AocBaseClass(ABC):
-    def __init__(self, /, test_suffix=""):
-        path = f"{pathlib.Path(__file__).parent.parent}/resources/day_{self.__class__.get_day():02}{test_suffix}.txt"
-        puzzle_input = pathlib.Path(path).read_text().strip()
+    def __init__(self, /, test_suffix="", read_from_file=False):
+        year, day = self.get_date()
+        path = (
+            f"{pathlib.Path(__file__).parent.parent}"
+            f"/resources/day_"
+            f"{day:02}"
+            f"{test_suffix}.txt"
+        )
+        if not os.path.isfile(path=path):
+            puzzle_input = get_data(day=day, year=year)
+            with open(path, 'w') as f:
+                f.write(puzzle_input)
+        else:
+            puzzle_input = pathlib.Path(path).read_text().strip()
         self.solved = False
         self.data = self._parse(puzzle_input)
         self.solutions = None
 
+    DAY = -1
+    YEAR = 2021
+
     @classmethod
-    def get_day(cls):
-        """Return the corresponding day to reference the correct input file"""
-        return cls.DAY
+    def get_date(cls):
+        """Return the corresponding day and year to reference the correct input file"""
+        return cls.YEAR, cls.DAY
 
     @abstractmethod
     def _parse(self, puzzle_input):
