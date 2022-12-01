@@ -72,7 +72,7 @@ class AocSolution(AocBaseClass):
                             new = State(
                                 state.energy
                                 + (room_size - len(room) + 1 + abs(EXIT[ri] - hi))
-                                * (10 ** a),
+                                * (10**a),
                                 self.insert(state.rooms, ri, room[:-1]),
                                 self.insert(state.hallway, hi, a),
                             )
@@ -93,7 +93,7 @@ class AocSolution(AocBaseClass):
                     continue
                 new = State(
                     state.energy
-                    + (room_size - len(state.rooms[a]) + abs(EXIT[a] - i)) * (10 ** a),
+                    + (room_size - len(state.rooms[a]) + abs(EXIT[a] - i)) * (10**a),
                     self.insert(state.rooms, a, (state.rooms[a] + (a,))),
                     self.insert(state.hallway, i, None),
                 )

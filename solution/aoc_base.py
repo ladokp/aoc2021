@@ -18,7 +18,7 @@ class AocBaseClass(ABC):
         )
         if not os.path.isfile(path=path):
             puzzle_input = get_data(day=day, year=year)
-            with open(path, 'w') as f:
+            with open(path, "w") as f:
                 f.write(puzzle_input)
         else:
             puzzle_input = pathlib.Path(path).read_text().strip()
